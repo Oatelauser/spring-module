@@ -1,0 +1,38 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+    <id>my-assembly</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory> <!-- 依赖的JAR包输出到lib目录 -->
+            <excludes>
+                <exclude>test</exclude>
+                <exclude>system</exclude>
+                <exclude>provided</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>${project.build.directory}/classes/META-INF</directory> <!-- 指定输出目录 -->
+            <outputDirectory>/</outputDirectory> <!-- 输出到根目录 -->
+            <includes>
+                <include>dependencies.dot</include> <!-- 包含当前项目的JAR文件 -->
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}</directory> <!-- 指定输出目录 -->
+            <outputDirectory>/</outputDirectory> <!-- 输出到根目录 -->
+            <includes>
+                <include>${project.artifactId}-${project.version}.jar</include> <!-- 包含当前项目的JAR文件 -->
+            </includes>
+        </fileSet>
+    </fileSets>
+
+</assembly>

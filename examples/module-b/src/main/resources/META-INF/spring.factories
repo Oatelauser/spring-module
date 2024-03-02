@@ -1,0 +1,3 @@
+# Application AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.abm.module.examples.b.Config
